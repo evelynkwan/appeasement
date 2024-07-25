@@ -43,7 +43,7 @@ public class BattleUI : MonoBehaviour
 
     }
 
-    public void DfendButton()
+    public void DefendButton()
     {
 
     }
