@@ -120,7 +120,7 @@ public class BattleUI : MonoBehaviour
         }
         //ENSURE that the HP slider always updates with the player's current health
         playerHP.value = player.GetComponent<UnitStats>().health;
-        if (player.GetComponent<UnitStats>().health < 0)
+        if (player.GetComponent<UnitStats>().health < 0 || playerUnitStats.dead)
         {
             playerHPNumber.text = "0";
         }

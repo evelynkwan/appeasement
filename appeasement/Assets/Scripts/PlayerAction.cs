@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerAction : MonoBehaviour
 
     private BattleManager bm;
     private BattleUI bui;
+    public TMP_Text playerHPNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class PlayerAction : MonoBehaviour
 
         if (playerUnitStats.health <= 0)
         {
+            playerHPNumber.text = "0";
             Destroy(this.gameObject);
             Debug.Log("DED LMAO");
         }

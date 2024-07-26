@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
     //REFERENCES//
     private GameObject player;
     private BattleUI bui;
+    private UnitStats playerUnitStats;
 
     //List of all enemies in a scene 
     public List<GameObject> enemies = new List<GameObject>();
@@ -32,6 +33,7 @@ public class BattleManager : MonoBehaviour
         bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
         playerActionsMenu.SetActive(true);
         player = GameObject.Find("KittyPlayer");
+        playerUnitStats = player.GetComponent<UnitStats>();
         randInt = Random.Range(1, 3);
         if (randInt == 1)
         {
@@ -82,7 +84,14 @@ public class BattleManager : MonoBehaviour
         if(curTurn >= 2)
         {
             Debug.Log("PLAYER'S TURN");
-            ResetTurns();
+            if (playerUnitStats.health <= 0)
+            {
+                Debug.Log("LOSER");
+            }
+            else
+            {
+                ResetTurns();
+            }
         }
 
         //Otherwise, if the Player had a turn, switch to the Enemy's turn. 
