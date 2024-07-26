@@ -14,11 +14,15 @@ public class UnitStats : MonoBehaviour
     public int meterRate;
     public int specialattack;
     public bool dead = false;
+    private bool first = true;
     // Start is called before the first frame update
 
     void Start()
     {
-        
+        if (first)
+        {
+            first = false;
+        }
     }
 
     // Update is called once per frame
