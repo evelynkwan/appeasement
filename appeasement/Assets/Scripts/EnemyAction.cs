@@ -29,7 +29,7 @@ public class EnemyAction : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        enemyUnitStats.health -= damageAmount;
+        enemyUnitStats.health -= (damageAmount - enemyUnitStats.defense);
 
         //When this enemy dies, 
         //Set the current enemy to be the next enemy in the list until it reaches the end of the list.

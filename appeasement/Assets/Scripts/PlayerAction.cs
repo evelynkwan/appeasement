@@ -30,7 +30,7 @@ public class PlayerAction : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        playerUnitStats.health -= (damageAmount - guardBoost);
+        playerUnitStats.health -= (damageAmount - guardBoost - playerUnitStats.defense);
 
         if (playerUnitStats.health <= 0)
         {
