@@ -9,13 +9,17 @@ public class PlayerAction : MonoBehaviour
 
     //REFERENCES//
     private UnitStats playerUnitStats;
+    private int guardBoost;
 
     private BattleManager bm;
+    private BattleUI bui;
     // Start is called before the first frame update
     void Start()
     {
         playerUnitStats = GetComponent<UnitStats>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
+        guardBoost = 0;
     }
 
     // Update is called once per frame
@@ -26,7 +30,7 @@ public class PlayerAction : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        playerUnitStats.health -= damageAmount;
+        playerUnitStats.health -= (damageAmount - guardBoost);
 
         if (playerUnitStats.health <= 0)
         {
@@ -37,6 +41,7 @@ public class PlayerAction : MonoBehaviour
 
     public void Attack(EnemyAction targetEnemy)
     {
+        guardBoost = 0;
         targetEnemy.TakeDamage(playerUnitStats.attack);
         Debug.Log("TAKEN DAMAGE");
         bm.playerActionsMenu.SetActive(false);
@@ -45,12 +50,24 @@ public class PlayerAction : MonoBehaviour
 
     public void Defend()
     {
-
+        guardBoost = playerUnitStats.guardAmount;
+        if (bui.meterValue < 8)
+        {
+            bui.meterValue += playerUnitStats.meterRate;
+        }
+        Debug.Log("GUARDED");
+        bm.playerActionsMenu.SetActive(false);
+        Invoke("CallTurnAfterDelay", 1f);
     }
 
-    public void Special()
+    public void Special(EnemyAction targetEnemy)
     {
-
+        guardBoost = 0;
+        bui.meterValue -= playerUnitStats.meterCost;
+        targetEnemy.TakeDamage(playerUnitStats.specialattack);
+        Debug.Log("SPECIAL");
+        bm.playerActionsMenu.SetActive(false);
+        Invoke("CallTurnAfterDelay", 1f);
     }
 
 

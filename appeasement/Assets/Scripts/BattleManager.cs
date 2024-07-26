@@ -11,6 +11,7 @@ public class BattleManager : MonoBehaviour
 
     //REFERENCES//
     private GameObject player;
+    private BattleUI bui;
 
     //List of all enemies in a scene 
     public List<GameObject> enemies = new List<GameObject>();
@@ -20,18 +21,36 @@ public class BattleManager : MonoBehaviour
 
     //The Player Actions Menu for the UI Buttons 
     public GameObject playerActionsMenu;
+    public GameObject Dog;
+    public GameObject Angy;
+    public GameObject Something;
+    private int randInt = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
         playerActionsMenu.SetActive(true);
         player = GameObject.Find("KittyPlayer");
-
+        randInt = Random.Range(1, 3);
+        if (randInt == 1)
+        {
+            enemies.Add(Dog);
+        }
+        else if (randInt == 2)
+        {
+            enemies.Add(Angy);
+        }
+        else
+        {
+            enemies.Add(Something);
+        }
         //Add each enemy in a scene to the Enemies List. 
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        /*foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             enemies.Add(enemy);
-        }
+        }*/
+        
 
         //Set the current enemy to be the first enemy in the list 
         curEnemy = 0;
@@ -91,7 +110,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("RESET TURNS");
         curTurn = 0;
         playerActionsMenu.SetActive(true);
-
+        bui.specialButton.SetActive(true);
     }
 
     //If all enemies are gone, indicate to the player that they won and they can move onto the next stage.
