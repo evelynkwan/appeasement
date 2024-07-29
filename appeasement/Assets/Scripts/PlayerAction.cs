@@ -54,11 +54,11 @@ public class PlayerAction : MonoBehaviour
     public void Defend()
     {
         guardBoost = playerUnitStats.guardAmount;
-        if (bui.meterValue < 8)
+        if (bui.meterValue < 10)
         {
             bui.meterValue += playerUnitStats.meterRate;
-            if (bui.meterValue > 8) {
-                bui.meterValue = 8;
+            if (bui.meterValue > 10) {
+                bui.meterValue = 10;
             }
         }
         Debug.Log("GUARDED");

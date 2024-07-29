@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Linq;
 
 //Used for the UI for interacting with the combat system (Attacking, Special, Defend, etc.) 
 public class BattleUI : MonoBehaviour
@@ -53,9 +54,9 @@ public class BattleUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        meterValue = 4;
+        meterValue = 5;
         apMeter.value = 0.9665f;
-        randomStorage = new int[] {0, 0};
+        randomStorage = new int[] {0, 0, 0, 0};
         hasRandomized = true;
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         player = GameObject.Find("KittyPlayer");
@@ -91,13 +92,13 @@ public class BattleUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        apMeter.value = (meterValue * 0.008375f) + 0.933f;
+        apMeter.value = (meterValue * 0.0067f) + 0.933f;
         if (meterValue < playerUnitStats.meterCost)
         {
             specialButton.SetActive(false);
             Debug.Log("IDK");
         }
-        if (meterValue >= 8)
+        if (meterValue >= 10)
         {
             appeasedFace.SetActive(true);
             happyFace.SetActive(false);
@@ -113,7 +114,7 @@ public class BattleUI : MonoBehaviour
             unhappyFace.SetActive(false);
             angryFace.SetActive(false);
         }
-        else if (meterValue >= 4)
+        else if (meterValue >= 5)
         {
             appeasedFace.SetActive(false);
             happyFace.SetActive(false);
@@ -121,7 +122,7 @@ public class BattleUI : MonoBehaviour
             unhappyFace.SetActive(false);
             angryFace.SetActive(false);
         }
-        else if (meterValue >= 2)
+        else if (meterValue >= 3)
         {
             appeasedFace.SetActive(false);
             happyFace.SetActive(false);
@@ -200,10 +201,22 @@ public class BattleUI : MonoBehaviour
             if (hasRandomized)
             {
                 hasRandomized = false;
-                randomStorage = new int[] { 0, 0 };
+                randomStorage = new int[] { 0, 0, 0, 0 };
+                if (playerUnitStats.meterCost <= 1)
+                {
+                    randomStorage[2] = 6;
+                }
+                if (playerUnitStats.meterRate >= 10)
+                {
+                    randomStorage[3] = 5;
+                }
                 upgradePanel.SetActive(true);
                 upgradeParent.SetActive(true);
-                randInt1 = UnityEngine.Random.Range(1, 7);
+                randInt1 = UnityEngine.Random.Range(1, 8);
+                while (randomStorage.Contains<int>(randInt1))
+                {
+                    randInt1 = UnityEngine.Random.Range(1, 8);
+                }
                 randomStorage[0] = randInt1;
                 if (randInt1 == 1)
                 {
@@ -233,10 +246,10 @@ public class BattleUI : MonoBehaviour
                 {
                     firstUpgrade.GetComponent<Image>().sprite = upgrade7;
                 }
-                randInt2 = UnityEngine.Random.Range(1, 7);
-                while (randInt2 == randomStorage[0])
+                randInt2 = UnityEngine.Random.Range(1, 8);
+                while (randomStorage.Contains<int>(randInt2))
                 {
-                    randInt2 = UnityEngine.Random.Range(1, 7);
+                    randInt2 = UnityEngine.Random.Range(1, 8);
                 }
                 randomStorage[1] = randInt2;
                 if (randInt2 == 1)
@@ -267,10 +280,10 @@ public class BattleUI : MonoBehaviour
                 {
                     secondUpgrade.GetComponent<Image>().sprite = upgrade7;
                 }
-                randInt3 = UnityEngine.Random.Range(1, 7);
-                while (randInt3 == randomStorage[0] || randInt3 == randomStorage[1])
+                randInt3 = UnityEngine.Random.Range(1, 8);
+                while (randomStorage.Contains<int>(randInt3))
                 {
-                    randInt3 = UnityEngine.Random.Range(1, 7);
+                    randInt3 = UnityEngine.Random.Range(1, 8);
                 }
                 if (randInt3 == 1)
                 {

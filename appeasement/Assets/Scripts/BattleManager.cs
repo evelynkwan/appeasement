@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,10 @@ public class BattleManager : MonoBehaviour
     //The current turn you are on in the game (0 for player, 1 for enemy) 
     public int curTurn;
     public bool upgrades;
+    public int curLevel;
+    public int loopDep;
+    public int randInt2;
+    public int[] randStorage;
 
     //REFERENCES//
     private GameObject player;
@@ -32,11 +37,15 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         upgrades = false;
+        randInt2 = 0;
+        randStorage = new int[] { 0, 0 };
+        loopDep = 0;
+        curLevel = 1;
         bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
         playerActionsMenu.SetActive(true);
         player = GameObject.Find("KittyPlayer");
         playerUnitStats = player.GetComponent<UnitStats>();
-        randInt = Random.Range(1, 3);
+        randInt = Random.Range(1, 4);
         if (randInt == 1)
         {
             enemies.Add(Dog);
@@ -130,7 +139,7 @@ public class BattleManager : MonoBehaviour
     public void NextStage()
     {
         enemies.Clear();
-        randInt = Random.Range(1, 3);
+        randInt = Random.Range(1, 4);
         if (randInt == 1)
         {
             enemies.Add(Dog);
@@ -144,7 +153,43 @@ public class BattleManager : MonoBehaviour
             enemies.Add(Something);
         }
         curEnemy = 0;
-        bui.meterValue = 4;
+        loopDep = 1;
+        randStorage = new int[] { 0, 0 };
+        while (loopDep <= curLevel)
+        {
+            randInt2 = Random.Range(1, 4);
+            while (randStorage.Contains<int>(randInt2))
+            {
+                randInt2 = Random.Range(1, 4);
+            }
+            if (randStorage[0] == 0)
+            {
+                randStorage[0] = randInt2;
+            }
+            else if (randStorage[1] == 0)
+            {
+                randStorage[1] = randInt2;
+            }
+            else
+            {
+                randStorage = new int[] { 0, 0 };
+            }
+            if (randInt2 == 1)
+            {
+                enemies[curEnemy].GetComponent<UnitStats>().attack += 1;
+            }
+            else if (randInt2 == 2)
+            {
+                enemies[curEnemy].GetComponent<UnitStats>().defense += 1;
+            }
+            else
+            {
+                enemies[curEnemy].GetComponent<UnitStats>().max_health += 3;
+            }
+            loopDep += 1;
+        }
+        curLevel += 1;
+        bui.meterValue = 5;
         playerUnitStats.health = playerUnitStats.max_health;
         bui.playerHP.maxValue = player.GetComponent<UnitStats>().max_health;
         enemies[curEnemy].GetComponent<UnitStats>().health = enemies[curEnemy].GetComponent<UnitStats>().max_health;
