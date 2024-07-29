@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayScreen3.unity
     guid: b5afb9e307bcc284a922640f39e7f335
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 9b7e754072b687948af78e6e5195ef79
+  - enabled: 1
+    path: Assets/Scenes/LoseScreen.unity
+    guid: 0bfb1aae290e3aa4e90428ef3541e6b1
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: cedf5d2b241693e45b3bd4829ace6689
   m_configObjects: {}
