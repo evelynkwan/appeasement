@@ -212,4 +212,18 @@ public class BattleManager : MonoBehaviour
         bui.enemyHP.maxValue = enemies[curEnemy].GetComponent<UnitStats>().max_health;
         ResetTurns();
     }
+    public void Retry()
+    {
+        curLevel = 0;
+        playerUnitStats.max_health = 20;
+        playerUnitStats.health = 20;
+        playerUnitStats.attack = 3;
+        playerUnitStats.defense = 0;
+        playerUnitStats.guardAmount = 1;
+        playerUnitStats.meterCost = 10;
+        playerUnitStats.meterRate = 1;
+        playerUnitStats.specialattack = 18;
+        playerUnitStats.dead = false;
+        NextStage();
+    }
 }
