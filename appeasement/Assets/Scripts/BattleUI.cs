@@ -26,6 +26,8 @@ public class BattleUI : MonoBehaviour
     public GameObject Something;
     public GameObject Angy;
     public GameObject Dog;
+    public GameObject God;
+    public GameObject GodUI;
     public GameObject SomethingUI;
     public GameObject AngyUI;
     public GameObject DogUI;
@@ -50,12 +52,18 @@ public class BattleUI : MonoBehaviour
     public Sprite upgrade7;
     public int[] randomStorage;
     public bool hasRandomized;
+    public TMP_Text floorNumber;
+    public GameObject background;
+    public GameObject background2;
 
     // Start is called before the first frame update
     void Start()
     {
         meterValue = 5;
         apMeter.value = 0.9665f;
+        background.GetComponent<SpriteRenderer>().color = new Color(0.67f, 0.44f, 0.26f);
+        background2.GetComponent<SpriteRenderer>().color = new Color(0.44f, 0.29f, 0.18f);
+        floorNumber.text = "FLOOR 1";
         randomStorage = new int[] {0, 0, 0, 0};
         hasRandomized = true;
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
@@ -93,6 +101,7 @@ public class BattleUI : MonoBehaviour
     void Update()
     {
         apMeter.value = (meterValue * 0.0067f) + 0.933f;
+        floorNumber.text = "FLOOR " + bm.curLevel;
         if (meterValue < playerUnitStats.meterCost)
         {
             specialButton.SetActive(false);
@@ -169,6 +178,8 @@ public class BattleUI : MonoBehaviour
                 Dog.SetActive(true);
                 Something.SetActive(false);
                 Angy.SetActive(false);
+                God.SetActive(false);
+                GodUI.SetActive(false);
                 Debug.Log("DOG");
             }
             if (bm.enemies[bm.curEnemy] == Something)
@@ -179,6 +190,8 @@ public class BattleUI : MonoBehaviour
                 Dog.SetActive(false);
                 Something.SetActive(true);
                 Angy.SetActive(false);
+                God.SetActive(false);
+                GodUI.SetActive(false);
             }
             if (bm.enemies[bm.curEnemy] == Angy) 
             {
@@ -188,6 +201,21 @@ public class BattleUI : MonoBehaviour
                 Dog.SetActive(false);
                 Something.SetActive(false);
                 Angy.SetActive(true);
+                God.SetActive(false);
+                GodUI.SetActive(false);
+            }
+            if (bm.enemies[bm.curEnemy] == God)
+            {
+                DogUI.SetActive(false);
+                SomethingUI.SetActive(false);
+                AngyUI.SetActive(false);
+                Dog.SetActive(false);
+                Something.SetActive(false);
+                Angy.SetActive(false);
+                God.SetActive(true);
+                GodUI.SetActive(true);
+                background.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+                background2.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.7f, 0.7f);
             }
         }
         else
@@ -195,6 +223,7 @@ public class BattleUI : MonoBehaviour
             enemyHP.value = 0;
             Dog.SetActive(false);
             Something.SetActive(false);
+            God.SetActive(false);
             Angy.SetActive(false);
         }
         if (bm.upgrades) {
