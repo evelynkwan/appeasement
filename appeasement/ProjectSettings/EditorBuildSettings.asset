@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CutScene3.unity
     guid: 452887e6ed605414b94f7a205209764c
+  - enabled: 1
+    path: Assets/Scenes/PlayScreen.unity
+    guid: 93d16e54d3ef73543b9c720402c98f9f
+  - enabled: 1
+    path: Assets/Scenes/PlayScreen2.unity
+    guid: bb2074df7f9167e49990f2afce0cf8c0
+  - enabled: 1
+    path: Assets/Scenes/PlaySceen3.unity
+    guid: b5afb9e307bcc284a922640f39e7f335
   m_configObjects: {}
