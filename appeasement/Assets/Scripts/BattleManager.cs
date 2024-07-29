@@ -214,7 +214,7 @@ public class BattleManager : MonoBehaviour
     }
     public void Retry()
     {
-        curLevel = 0;
+        curLevel = 0;    
         playerUnitStats.max_health = 20;
         playerUnitStats.health = 20;
         playerUnitStats.attack = 3;

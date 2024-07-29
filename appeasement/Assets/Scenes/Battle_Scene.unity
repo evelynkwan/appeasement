@@ -5721,9 +5721,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 986901655}
     - target: {fileID: 7235061313959614830, guid: a93e3781526f0e64cbdf1b2869848a58, type: 3}
+      propertyPath: upgrades
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235061313959614830, guid: a93e3781526f0e64cbdf1b2869848a58, type: 3}
       propertyPath: Something
       value: 
       objectReference: {fileID: 1803438174}
+    - target: {fileID: 7235061313959614830, guid: a93e3781526f0e64cbdf1b2869848a58, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235061313959614830, guid: a93e3781526f0e64cbdf1b2869848a58, type: 3}
       propertyPath: playerActionsMenu
       value: 
