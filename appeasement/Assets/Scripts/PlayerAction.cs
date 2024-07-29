@@ -57,6 +57,9 @@ public class PlayerAction : MonoBehaviour
         if (bui.meterValue < 8)
         {
             bui.meterValue += playerUnitStats.meterRate;
+            if (bui.meterValue > 8) {
+                bui.meterValue = 8;
+            }
         }
         Debug.Log("GUARDED");
         bm.playerActionsMenu.SetActive(false);

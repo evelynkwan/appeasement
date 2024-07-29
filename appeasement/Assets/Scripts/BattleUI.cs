@@ -11,6 +11,9 @@ public class BattleUI : MonoBehaviour
     //REFERENCES//
     public Slider apMeter;
     public int meterValue;
+    public int randInt1;
+    public int randInt2;
+    public int randInt3;
     private GameObject player;
     private GameObject enemy;
     private PlayerAction playerActionScript;
@@ -32,12 +35,28 @@ public class BattleUI : MonoBehaviour
     public GameObject mehFace;
     public GameObject happyFace;
     public GameObject appeasedFace;
+    public GameObject upgradePanel;
+    public GameObject upgradeParent;
+    public GameObject firstUpgrade;
+    public GameObject secondUpgrade;
+    public GameObject thirdUpgrade;
+    public Sprite upgrade1;
+    public Sprite upgrade2;
+    public Sprite upgrade3;
+    public Sprite upgrade4;
+    public Sprite upgrade5;
+    public Sprite upgrade6;
+    public Sprite upgrade7;
+    public int[] randomStorage;
+    public bool hasRandomized;
 
     // Start is called before the first frame update
     void Start()
     {
         meterValue = 4;
         apMeter.value = 0.9665f;
+        randomStorage = new int[] {0, 0};
+        hasRandomized = true;
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         player = GameObject.Find("KittyPlayer");
         playerUnitStats = player.GetComponent<UnitStats>();
@@ -177,6 +196,241 @@ public class BattleUI : MonoBehaviour
             Something.SetActive(false);
             Angy.SetActive(false);
         }
+        if (bm.upgrades) {
+            if (hasRandomized)
+            {
+                hasRandomized = false;
+                randomStorage = new int[] { 0, 0 };
+                upgradePanel.SetActive(true);
+                upgradeParent.SetActive(true);
+                randInt1 = UnityEngine.Random.Range(1, 7);
+                randomStorage[0] = randInt1;
+                if (randInt1 == 1)
+                {
+                    firstUpgrade.GetComponent<Image>().sprite = upgrade1;
+                }
+                else if (randInt1 == 2)
+                {
+                    firstUpgrade.GetComponent<Image>().sprite = upgrade2;
+                }
+                else if (randInt1 == 3)
+                {
+                    firstUpgrade.GetComponent<Image>().sprite = upgrade3;
+                }
+                else if (randInt1 == 4)
+                {
+                    firstUpgrade.GetComponent<Image>().sprite = upgrade4;
+                }
+                else if (randInt1 == 5)
+                {
+                    firstUpgrade.GetComponent<Image>().sprite = upgrade5;
+                }
+                else if (randInt1 == 6)
+                {
+                    firstUpgrade.GetComponent<Image>().sprite = upgrade6;
+                }
+                else
+                {
+                    firstUpgrade.GetComponent<Image>().sprite = upgrade7;
+                }
+                randInt2 = UnityEngine.Random.Range(1, 7);
+                while (randInt2 == randomStorage[0])
+                {
+                    randInt2 = UnityEngine.Random.Range(1, 7);
+                }
+                randomStorage[1] = randInt2;
+                if (randInt2 == 1)
+                {
+                    secondUpgrade.GetComponent<Image>().sprite = upgrade1;
+                }
+                else if (randInt2 == 2)
+                {
+                    secondUpgrade.GetComponent<Image>().sprite = upgrade2;
+                }
+                else if (randInt2 == 3)
+                {
+                    secondUpgrade.GetComponent<Image>().sprite = upgrade3;
+                }
+                else if (randInt2 == 4)
+                {
+                    secondUpgrade.GetComponent<Image>().sprite = upgrade4;
+                }
+                else if (randInt2 == 5)
+                {
+                    secondUpgrade.GetComponent<Image>().sprite = upgrade5;
+                }
+                else if (randInt2 == 6)
+                {
+                    secondUpgrade.GetComponent<Image>().sprite = upgrade6;
+                }
+                else
+                {
+                    secondUpgrade.GetComponent<Image>().sprite = upgrade7;
+                }
+                randInt3 = UnityEngine.Random.Range(1, 7);
+                while (randInt3 == randomStorage[0] || randInt3 == randomStorage[1])
+                {
+                    randInt3 = UnityEngine.Random.Range(1, 7);
+                }
+                if (randInt3 == 1)
+                {
+                    thirdUpgrade.GetComponent<Image>().sprite = upgrade1;
+                }
+                else if (randInt3 == 2)
+                {
+                    thirdUpgrade.GetComponent<Image>().sprite = upgrade2;
+                }
+                else if (randInt3 == 3)
+                {
+                    thirdUpgrade.GetComponent<Image>().sprite = upgrade3;
+                }
+                else if (randInt3 == 4)
+                {
+                    thirdUpgrade.GetComponent<Image>().sprite = upgrade4;
+                }
+                else if (randInt3 == 5)
+                {
+                    thirdUpgrade.GetComponent<Image>().sprite = upgrade5;
+                }
+                else if (randInt3 == 6)
+                {
+                    thirdUpgrade.GetComponent<Image>().sprite = upgrade6;
+                }
+                else
+                {
+                    thirdUpgrade.GetComponent<Image>().sprite = upgrade7;
+                }
+            }
+        }
+        else
+        {
+            upgradePanel.SetActive(false);
+            upgradeParent.SetActive(false);
+            hasRandomized = true;
+        }
+    }
+
+    public void FirstUpgrade()
+    {
+        if (randInt1 == 1)
+        {
+            playerUnitStats.attack += 1;
+        }
+        else if (randInt1 == 2)
+        {
+            playerUnitStats.guardAmount += 1;
+        }
+        else if (randInt1 == 3)
+        {
+            playerUnitStats.defense += 1;
+        }
+        else if (randInt1 == 4)
+        {
+            playerUnitStats.max_health += 5;
+        }
+        else if (randInt1 == 5)
+        {
+            playerUnitStats.meterRate += 1;
+        }
+        else if (randInt1 == 6)
+        {
+            if (playerUnitStats.meterCost <= 1)
+            {
+                playerUnitStats.meterCost = 1;
+            }
+            else
+            {
+                playerUnitStats.meterCost -= 1;
+            }
+        }
+        else
+        {
+            playerUnitStats.specialattack += 1;
+        }
+        bm.upgrades = false;
+        bm.NextStage();
+    }
+
+    public void SecondUpgrade()
+    {
+        if (randInt2 == 1)
+        {
+            playerUnitStats.attack += 1;
+        }
+        else if (randInt2 == 2)
+        {
+            playerUnitStats.guardAmount += 1;
+        }
+        else if (randInt2 == 3)
+        {
+            playerUnitStats.defense += 1;
+        }
+        else if (randInt2 == 4)
+        {
+            playerUnitStats.max_health += 5;
+        }
+        else if (randInt2 == 5)
+        {
+            playerUnitStats.meterRate += 1;
+        }
+        else if (randInt2 == 6)
+        {
+            if (playerUnitStats.meterCost <= 1)
+            {
+                playerUnitStats.meterCost = 1;
+            }
+            else
+            {
+                playerUnitStats.meterCost -= 1;
+            }
+        }
+        else
+        {
+            playerUnitStats.specialattack += 1;
+        }
+        bm.upgrades = false;
+        bm.NextStage();
+    }
+
+    public void ThirdUpgrade()
+    {
+        if (randInt3 == 1)
+        {
+            playerUnitStats.attack += 1;
+        }
+        else if (randInt3 == 2)
+        {
+            playerUnitStats.guardAmount += 1;
+        }
+        else if (randInt3 == 3)
+        {
+            playerUnitStats.defense += 1;
+        }
+        else if (randInt3 == 4)
+        {
+            playerUnitStats.max_health += 5;
+        }
+        else if (randInt3 == 5)
+        {
+            playerUnitStats.meterRate += 1;
+        }
+        else if (randInt3 == 6)
+        {
+            if (playerUnitStats.meterCost <= 1)
+            {
+                playerUnitStats.meterCost = 1;
+            }
+            else
+            {
+                playerUnitStats.meterCost -= 1;
+            }
+        }
+        else
+        {
+            playerUnitStats.specialattack += 1;
+        }
+        bm.upgrades = false;
+        bm.NextStage();
     }
 
     //Use for the UI Buttons in the Player Actions Menu//

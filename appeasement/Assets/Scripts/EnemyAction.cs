@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAction : MonoBehaviour
 {
@@ -12,13 +13,11 @@ public class EnemyAction : MonoBehaviour
 
     private BattleManager bm;
 
-
     // Start is called before the first frame update
     void Start()
     {
         enemyUnitStats = GetComponent<UnitStats>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-
     }
 
     // Update is called once per frame
@@ -36,7 +35,7 @@ public class EnemyAction : MonoBehaviour
         if (enemyUnitStats.health <= 0)
         {
             bm.curEnemy++;
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
             Debug.Log("DED LMAO");
         }
     }

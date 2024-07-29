@@ -8,6 +8,7 @@ public class BattleManager : MonoBehaviour
     //VARIABLES//
     //The current turn you are on in the game (0 for player, 1 for enemy) 
     public int curTurn;
+    public bool upgrades;
 
     //REFERENCES//
     private GameObject player;
@@ -30,6 +31,7 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        upgrades = false;
         bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
         playerActionsMenu.SetActive(true);
         player = GameObject.Find("KittyPlayer");
@@ -102,6 +104,8 @@ public class BattleManager : MonoBehaviour
             if (curEnemy >= enemies.Count)
             {
                 Debug.Log("VICTORY");
+                playerActionsMenu.SetActive(false);
+                upgrades = true;
             }
 
             else if(curEnemy < enemies.Count)
@@ -125,6 +129,26 @@ public class BattleManager : MonoBehaviour
     //If all enemies are gone, indicate to the player that they won and they can move onto the next stage.
     public void NextStage()
     {
-
+        enemies.Clear();
+        randInt = Random.Range(1, 3);
+        if (randInt == 1)
+        {
+            enemies.Add(Dog);
+        }
+        else if (randInt == 2)
+        {
+            enemies.Add(Angy);
+        }
+        else
+        {
+            enemies.Add(Something);
+        }
+        curEnemy = 0;
+        bui.meterValue = 4;
+        playerUnitStats.health = playerUnitStats.max_health;
+        bui.playerHP.maxValue = player.GetComponent<UnitStats>().max_health;
+        enemies[curEnemy].GetComponent<UnitStats>().health = enemies[curEnemy].GetComponent<UnitStats>().max_health;
+        bui.enemyHP.maxValue = enemies[curEnemy].GetComponent<UnitStats>().max_health;
+        ResetTurns();
     }
 }
