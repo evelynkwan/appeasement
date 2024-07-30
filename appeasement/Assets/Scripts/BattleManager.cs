@@ -230,7 +230,7 @@ public class BattleManager : MonoBehaviour
         playerUnitStats.max_health = 20;
         playerUnitStats.health = 20;
         playerUnitStats.attack = 3;
-        playerUnitStats.defense = 0;
+        playerUnitStats.defense = 1;
         playerUnitStats.guardAmount = 1;
         playerUnitStats.meterCost = 10;
         playerUnitStats.meterRate = 1;
