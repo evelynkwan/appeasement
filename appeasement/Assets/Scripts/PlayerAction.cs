@@ -37,6 +37,7 @@ public class PlayerAction : MonoBehaviour
         if (playerUnitStats.health <= 0)
         {
             playerHPNumber.text = "0";
+            bui.apMeter.value = 0;
             Destroy(this.gameObject);
             Debug.Log("DED LMAO");
         }

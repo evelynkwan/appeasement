@@ -148,6 +148,7 @@ public class BattleManager : MonoBehaviour
     public void NextStage()
     {
         enemies.Clear();
+        curEnemy = 0;
         if (curLevel == 19)
         {
             enemies.Add(God);
@@ -158,14 +159,26 @@ public class BattleManager : MonoBehaviour
             if (randInt == 1)
             {
                 enemies.Add(Dog);
+                enemies[curEnemy].GetComponent<UnitStats>().max_health = 20;
+                enemies[curEnemy].GetComponent<UnitStats>().health = 20;
+                enemies[curEnemy].GetComponent<UnitStats>().attack = 3;
+                enemies[curEnemy].GetComponent<UnitStats>().defense = 0;
             }
             else if (randInt == 2)
             {
                 enemies.Add(Angy);
+                enemies[curEnemy].GetComponent<UnitStats>().max_health = 15;
+                enemies[curEnemy].GetComponent<UnitStats>().health = 15;
+                enemies[curEnemy].GetComponent<UnitStats>().attack = 4;
+                enemies[curEnemy].GetComponent<UnitStats>().defense = 0;
             }
             else
             {
                 enemies.Add(Something);
+                enemies[curEnemy].GetComponent<UnitStats>().max_health = 25;
+                enemies[curEnemy].GetComponent<UnitStats>().health = 25;
+                enemies[curEnemy].GetComponent<UnitStats>().attack = 2;
+                enemies[curEnemy].GetComponent<UnitStats>().defense = 1;
             }
             loopDep = 1;
             randStorage = new int[] { 0, 0 };
@@ -203,7 +216,6 @@ public class BattleManager : MonoBehaviour
                 loopDep += 1;
             }
         }
-        curEnemy = 0;
         curLevel += 1;
         bui.meterValue = 5;
         playerUnitStats.health = playerUnitStats.max_health;
