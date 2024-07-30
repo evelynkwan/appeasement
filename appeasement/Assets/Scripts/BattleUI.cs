@@ -360,7 +360,7 @@ public class BattleUI : MonoBehaviour
         }
         else if (randInt1 == 2)
         {
-            playerUnitStats.guardAmount += 1;
+            playerUnitStats.guardAmount += 2;
         }
         else if (randInt1 == 3)
         {
@@ -401,7 +401,7 @@ public class BattleUI : MonoBehaviour
         }
         else if (randInt2 == 2)
         {
-            playerUnitStats.guardAmount += 1;
+            playerUnitStats.guardAmount += 2;
         }
         else if (randInt2 == 3)
         {
@@ -442,7 +442,7 @@ public class BattleUI : MonoBehaviour
         }
         else if (randInt3 == 2)
         {
-            playerUnitStats.guardAmount += 1;
+            playerUnitStats.guardAmount += 2;
         }
         else if (randInt3 == 3)
         {

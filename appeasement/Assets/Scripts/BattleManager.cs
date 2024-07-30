@@ -170,7 +170,7 @@ public class BattleManager : MonoBehaviour
                 enemies[curEnemy].GetComponent<UnitStats>().max_health = 15;
                 enemies[curEnemy].GetComponent<UnitStats>().health = 15;
                 enemies[curEnemy].GetComponent<UnitStats>().attack = 4;
-                enemies[curEnemy].GetComponent<UnitStats>().defense = 0;
+                enemies[curEnemy].GetComponent<UnitStats>().defense = -1;
             }
             else
             {
@@ -178,7 +178,7 @@ public class BattleManager : MonoBehaviour
                 enemies[curEnemy].GetComponent<UnitStats>().max_health = 25;
                 enemies[curEnemy].GetComponent<UnitStats>().health = 25;
                 enemies[curEnemy].GetComponent<UnitStats>().attack = 2;
-                enemies[curEnemy].GetComponent<UnitStats>().defense = 1;
+                enemies[curEnemy].GetComponent<UnitStats>().defense = 0;
             }
             loopDep = 1;
             randStorage = new int[] { 0, 0 };

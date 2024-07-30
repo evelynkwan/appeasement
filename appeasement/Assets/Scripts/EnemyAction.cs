@@ -28,6 +28,14 @@ public class EnemyAction : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
+        if ((damageAmount - enemyUnitStats.defense) >= 1)
+        {
+            enemyUnitStats.health -= (damageAmount - enemyUnitStats.defense);
+        }
+        else
+        {
+            enemyUnitStats.health -= 1;
+        }
         enemyUnitStats.health -= (damageAmount - enemyUnitStats.defense);
 
         //When this enemy dies, 

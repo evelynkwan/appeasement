@@ -32,12 +32,18 @@ public class PlayerAction : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        playerUnitStats.health -= (damageAmount - guardBoost - playerUnitStats.defense);
-
+        if ( (damageAmount - guardBoost - playerUnitStats.defense) >= 1)
+        {
+            playerUnitStats.health -= (damageAmount - guardBoost - playerUnitStats.defense);
+        }
+        else
+        {
+            playerUnitStats.health -= 1;
+        }
         if (playerUnitStats.health <= 0)
         {
             playerHPNumber.text = "0";
-            bui.apMeter.value = 0;
+            bui.playerHP.value = 0;
             Destroy(this.gameObject);
             Debug.Log("DED LMAO");
         }

@@ -721,9 +721,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 721.16, y: -80.649}
+  m_AnchoredPosition: {x: 874.4, y: -80.649}
   m_SizeDelta: {x: 160, y: 40}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &341137789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 833140483}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 10
   m_WholeNumbers: 1
@@ -1167,7 +1167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 5, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: 0.00000021234155, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &624958998
@@ -1588,7 +1588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -4, y: 0}
+  m_AnchoredPosition: {x: 4, y: 0}
   m_SizeDelta: {x: -8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &833140484
@@ -2279,7 +2279,7 @@ MonoBehaviour:
   health: 15
   max_health: 15
   attack: 4
-  defense: 0
+  defense: -1
   speed: 0
   guardAmount: 0
   meterCost: 0
@@ -5013,9 +5013,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 20
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5417,7 +5417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5888306989164954347, guid: 30da13e250b97dc48999e556505deb21, type: 3}
       propertyPath: defense
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5888306989164954347, guid: 30da13e250b97dc48999e556505deb21, type: 3}
       propertyPath: max_health
@@ -5810,6 +5810,10 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1942687106800459920, guid: 3177d3b4512abf745baf6f86979e67b8, type: 3}
+      propertyPath: defense
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1942687106800459920, guid: 3177d3b4512abf745baf6f86979e67b8, type: 3}
       propertyPath: max_health
       value: 25
       objectReference: {fileID: 0}
@@ -5863,7 +5867,7 @@ MonoBehaviour:
   health: 25
   max_health: 25
   attack: 2
-  defense: 1
+  defense: 0
   speed: 0
   guardAmount: 0
   meterCost: 0
