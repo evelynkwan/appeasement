@@ -40,18 +40,30 @@ public class PlayerAction : MonoBehaviour
         {
             playerUnitStats.health -= 1;
         }
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
         if (playerUnitStats.health <= 0)
         {
+            Invoke("NormalColor", 0.1f);
             playerHPNumber.text = "0";
             bui.playerHP.value = 0;
             Destroy(this.gameObject);
             Debug.Log("DED LMAO");
         }
+        else
+        {
+            Invoke("NormalColor", 0.1f);
+        }
+    }
+
+    public void NormalColor()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public void Attack(EnemyAction targetEnemy)
     {
         guardBoost = 0;
+        bui.popper.SetActive(true);
         targetEnemy.TakeDamage(playerUnitStats.attack);
         Debug.Log("TAKEN DAMAGE");
         bm.playerActionsMenu.SetActive(false);
@@ -77,6 +89,7 @@ public class PlayerAction : MonoBehaviour
     {
         guardBoost = 0;
         bui.meterValue -= playerUnitStats.meterCost;
+        bui.gun.SetActive(true);
         targetEnemy.TakeDamage(playerUnitStats.specialattack);
         Debug.Log("SPECIAL");
         bm.playerActionsMenu.SetActive(false);
@@ -87,6 +100,8 @@ public class PlayerAction : MonoBehaviour
     //Waits to call the StartNextTurn() method after 1 second has passed.
     public void CallTurnAfterDelay()
     {
+        bui.popper.SetActive(false);
+        bui.gun.SetActive(false);
         bm.StartNextTurn();
     }
 }

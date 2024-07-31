@@ -55,6 +55,12 @@ public class BattleUI : MonoBehaviour
     public TMP_Text floorNumber;
     public GameObject background;
     public GameObject background2;
+    public GameObject gun;
+    public GameObject hammer;
+    public GameObject ribbon;
+    public GameObject popper;
+    public GameObject cannon;
+    public GameObject bubble;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +82,12 @@ public class BattleUI : MonoBehaviour
         enemyHP.maxValue = enemy.GetComponent<UnitStats>().max_health;
         enemyHP.value = enemy.GetComponent<UnitStats>().health;
         playerHPNumber.text = player.GetComponent<UnitStats>().max_health.ToString();
+        gun.SetActive(false);
+        hammer.SetActive(false);
+        ribbon.SetActive(false);
+        popper.SetActive(false);
+        cannon.SetActive(false);
+        bubble.SetActive(false);
         if (bm.enemies[bm.curEnemy] == Dog)
         {
             DogUI.SetActive(true);
