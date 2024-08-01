@@ -66,7 +66,7 @@ public class BattleUI : MonoBehaviour
     void Start()
     {
         meterValue = 5;
-        apMeter.value = 0.975175f;
+        apMeter.value = 5;
         background.GetComponent<SpriteRenderer>().color = new Color(0.67f, 0.44f, 0.26f);
         background2.GetComponent<SpriteRenderer>().color = new Color(0.44f, 0.29f, 0.18f);
         floorNumber.text = "FLOOR 1";
@@ -112,7 +112,7 @@ public class BattleUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        apMeter.value = (meterValue * 0.004965f) + 0.95035f;
+        apMeter.value = meterValue;
         floorNumber.text = "FLOOR " + bm.curLevel;
         if (meterValue < playerUnitStats.meterCost)
         {
