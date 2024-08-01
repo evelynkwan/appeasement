@@ -14,6 +14,7 @@ public class PlayerAction : MonoBehaviour
 
     private BattleManager bm;
     private BattleUI bui;
+    private Audio audioo;
     public TMP_Text playerHPNumber;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlayerAction : MonoBehaviour
         playerUnitStats = GetComponent<UnitStats>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
+        audioo = GameObject.Find("SoundEffects").GetComponent<Audio>();
         guardBoost = 0;
     }
 
@@ -64,6 +66,7 @@ public class PlayerAction : MonoBehaviour
     {
         guardBoost = 0;
         bui.popper.SetActive(true);
+        audioo.PlaySEPlayer(false);
         targetEnemy.TakeDamage(playerUnitStats.attack);
         Debug.Log("TAKEN DAMAGE");
         bm.playerActionsMenu.SetActive(false);
@@ -80,6 +83,7 @@ public class PlayerAction : MonoBehaviour
                 bui.meterValue = 10;
             }
         }
+        audioo.Defend();
         Debug.Log("GUARDED");
         bm.playerActionsMenu.SetActive(false);
         Invoke("CallTurnAfterDelay", 1f);
@@ -89,6 +93,7 @@ public class PlayerAction : MonoBehaviour
     {
         guardBoost = 0;
         bui.meterValue -= playerUnitStats.meterCost;
+        audioo.PlaySEPlayer(true);
         bui.gun.SetActive(true);
         targetEnemy.TakeDamage(playerUnitStats.specialattack);
         Debug.Log("SPECIAL");

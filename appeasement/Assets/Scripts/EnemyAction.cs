@@ -13,6 +13,7 @@ public class EnemyAction : MonoBehaviour
 
     private BattleManager bm;
     private BattleUI bui;
+    private Audio audioo;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class EnemyAction : MonoBehaviour
         enemyUnitStats = GetComponent<UnitStats>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
+        audioo = GameObject.Find("SoundEffects").GetComponent<Audio>();
     }
 
     // Update is called once per frame
@@ -76,6 +78,7 @@ public class EnemyAction : MonoBehaviour
         {
             bui.ribbon.SetActive(true);
         }
+        audioo.PlaySEEnemy(bm.enemies[bm.curEnemy]);
         targetPlayer.TakeDamage(enemyUnitStats.attack);
         Debug.Log("TAKEN DAMAGE");
         Invoke("CallTurnAfterDelay", 1f);
