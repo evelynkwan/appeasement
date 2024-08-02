@@ -405,7 +405,7 @@ public class BattleUI : MonoBehaviour
         bm.NextStage();
     }
 
-    public void SecondUpgrade()
+    public void SecondUpgrade()//test
     {
         if (randInt2 == 1)
         {
