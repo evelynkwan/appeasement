@@ -23,6 +23,21 @@ public class MusicPlayer : MonoBehaviour
     {
         
     }
+
+    public void Victory()
+    {
+        if (source.clip == win && source.isPlaying)
+        {
+
+        }
+        else
+        {
+            source.clip = win;
+            source.time = 0;
+            source.loop = false;
+            source.Play();
+        }
+    }
     public void NormalBattle(bool isUpgrades, bool isBoss)
     {
         if (isBoss)

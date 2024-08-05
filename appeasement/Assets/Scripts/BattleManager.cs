@@ -14,6 +14,7 @@ public class BattleManager : MonoBehaviour
     public int loopDep;
     public int randInt2;
     public int[] randStorage;
+    public bool isBattle;
 
     //REFERENCES//
     private GameObject player;
@@ -39,6 +40,7 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         upgrades = false;
+        isBattle = true;
         randInt2 = 0;
         randStorage = new int[] { 0, 0 };
         loopDep = 0;
@@ -81,7 +83,10 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        music.NormalBattle(upgrades, curLevel >= 20);
+        if (isBattle)
+        {
+            music.NormalBattle(upgrades, curLevel >= 20);
+        }
     }
     
     //Go to the next turn (Player or Enemy) after a turn has been completed 
@@ -115,9 +120,19 @@ public class BattleManager : MonoBehaviour
             playerActionsMenu.SetActive(false);
             if (curEnemy >= enemies.Count)
             {
-                Debug.Log("VICTORY");
-                playerActionsMenu.SetActive(false);
-                upgrades = true;
+                if (curLevel >= 20)
+                {
+                    Debug.Log("GOD_DOWN");
+                    playerActionsMenu.SetActive(false);
+                    isBattle = false;
+                    music.Victory();
+                }
+                else
+                {
+                    Debug.Log("VICTORY");
+                    playerActionsMenu.SetActive(false);
+                    upgrades = true;
+                }
             }
 
             else if(curEnemy < enemies.Count)

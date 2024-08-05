@@ -16,12 +16,15 @@ public class UnitStats : MonoBehaviour
     public int specialattack;
     public bool dead = false;
     private bool first = true;
+    private BattleManager bm;
     // Start is called before the first frame update
 
     void Start()
     {
+        bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         if (first)
         {
+            bm.Retry();
             first = false;
         }
     }
