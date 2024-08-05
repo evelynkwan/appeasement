@@ -19,6 +19,7 @@ public class BattleManager : MonoBehaviour
     private GameObject player;
     private BattleUI bui;
     private UnitStats playerUnitStats;
+    private MusicPlayer music;
 
     //List of all enemies in a scene 
     public List<GameObject> enemies = new List<GameObject>();
@@ -46,6 +47,7 @@ public class BattleManager : MonoBehaviour
         playerActionsMenu.SetActive(true);
         player = GameObject.Find("KittyPlayer");
         playerUnitStats = player.GetComponent<UnitStats>();
+        music = GameObject.Find("MusicPlayer").GetComponent<MusicPlayer>();
         randInt = Random.Range(1, 4);
         if (randInt == 1)
         {
@@ -79,7 +81,7 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        music.NormalBattle(upgrades, curLevel >= 20);
     }
     
     //Go to the next turn (Player or Enemy) after a turn has been completed 
