@@ -395,8 +395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
-  audioOn: {fileID: 0}
-  audioOff: {fileID: 0}
+  audioOn: {fileID: 507532917}
+  audioOff: {fileID: 1924754127}
 --- !u!4 &258474961
 Transform:
   m_ObjectHideFlags: 0
