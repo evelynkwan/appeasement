@@ -12,10 +12,13 @@ public class MusicPlayer : MonoBehaviour
     public AudioClip upgrade;
     public AudioClip win;
     private AudioSource source;
+    public SettingsManager settings;
     // Start is called before the first frame update
     void Start()
     {
+        settings = GameObject.Find("SettingManager").GetComponent<SettingsManager>();
         source = GetComponent<AudioSource>();
+        Destroy(GameObject.Find("TitleScreenPlayer"));
     }
 
     // Update is called once per frame
