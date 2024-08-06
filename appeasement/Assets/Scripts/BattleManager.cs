@@ -124,7 +124,7 @@ public class BattleManager : MonoBehaviour
                 {
                     Debug.Log("GOD_DOWN");
                     playerActionsMenu.SetActive(false);
-                    isBattle = false;
+                    isBattle = false;  
                     music.Victory();
                 }
                 else

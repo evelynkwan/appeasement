@@ -21,12 +21,7 @@ public class UnitStats : MonoBehaviour
 
     void Start()
     {
-        bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-        if (first)
-        {
-            bm.Retry();
-            first = false;
-        }
+        
     }
 
     // Update is called once per frame
