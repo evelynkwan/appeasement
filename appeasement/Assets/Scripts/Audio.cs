@@ -13,9 +13,11 @@ public class Audio : MonoBehaviour
     public AudioClip cheer;
     private AudioSource source;
     private BattleUI bui;
+    public SettingsManager settings;
     // Start is called before the first frame update
     void Start()
     {
+        settings = GameObject.Find("SettingManager").GetComponent<SettingsManager>();
         source = GetComponent<AudioSource>();
         bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
     }
@@ -28,52 +30,61 @@ public class Audio : MonoBehaviour
 
     public void PlaySEPlayer(bool isSpecial)
     {
-        if (isSpecial)
+        if (settings.isAudio)
         {
-            source.clip = gun;
-            source.Play();
-            source.time = 0.265f;
-        }
-        else
-        {
-            source.clip = popper;
-            source.Play();
-            source.time = 0.35f;
+            if (isSpecial)
+            {
+                source.clip = gun;
+                source.Play();
+                source.time = 0.265f;
+            }
+            else
+            {
+                source.clip = popper;
+                source.Play();
+                source.time = 0.35f;
+            }
         }
     }
 
     public void Defend()
     {
-        source.clip = cheer;
-        source.Play();
-        source.time = 0.49f;
+        if (settings.isAudio)
+        {
+            source.clip = cheer;
+            source.Play();
+            source.time = 0.49f;
+        }
     }
 
     public void PlaySEEnemy(GameObject enemy)
     {
-        if (enemy == bui.Dog)
+        if (settings.isAudio)
         {
-            source.clip = cannon;
-            source.Play();
-            source.time = 0.15f;
-        }
-        else if (enemy == bui.Something)
-        {
-            source.clip = hammer;
-            source.Play();
-            source.time = 0.275f;
-        }
-        else if (enemy == bui.Angy)
-        {
-            source.clip = bubble;
-            source.Play();
-            source.time = 0.35f;
-        }
-        else
-        {
-            source.clip = ribbon;
-            source.Play();
-            source.time = 1.085f;
+            if (enemy == bui.Dog)
+            {
+                source.clip = cannon;
+                source.Play();
+                source.time = 0.15f;
+            }
+            else if (enemy == bui.Something)
+            {
+                source.clip = hammer;
+                source.Play();
+                source.time = 0.275f;
+            }
+            else if (enemy == bui.Angy)
+            {
+                source.clip = bubble;
+                source.Play();
+                source.time = 0.35f;
+            }
+            else
+            {
+                source.clip = ribbon;
+                source.Play();
+                source.time = 1.085f;
+            }
         }
     }
 }

@@ -980,6 +980,7 @@ MonoBehaviour:
   cannon: {fileID: 8300000, guid: c9b8887991af6434d875eeab951d6cde, type: 3}
   ribbon: {fileID: 8300000, guid: 7e8b10fe5500bbc469865778e6437943, type: 3}
   cheer: {fileID: 8300000, guid: 7c146cb4687dfb84d955620ab012df55, type: 3}
+  settings: {fileID: 0}
 --- !u!4 &373521305
 Transform:
   m_ObjectHideFlags: 0
@@ -1475,7 +1476,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 9e133d40542def049979407d9370f117, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbcfb8c4dcd84914980482fac92d0964, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5458,6 +5459,7 @@ MonoBehaviour:
   boss: {fileID: 8300000, guid: d5dcca404599ec94e9f6b6ba596dfa8d, type: 3}
   upgrade: {fileID: 8300000, guid: e412cf5de84c50049bb60337cb15eb4a, type: 3}
   win: {fileID: 8300000, guid: 314cfbad4d54b044b89861d39cc37036, type: 3}
+  settings: {fileID: 0}
 --- !u!82 &1816586177
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6788,6 +6790,14 @@ PrefabInstance:
     - target: {fileID: 7235061313959614830, guid: a93e3781526f0e64cbdf1b2869848a58, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235061313959614830, guid: a93e3781526f0e64cbdf1b2869848a58, type: 3}
+      propertyPath: loseSceneName
+      value: LoseScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235061313959614830, guid: a93e3781526f0e64cbdf1b2869848a58, type: 3}
+      propertyPath: nextSceneName
+      value: WinScreen
       objectReference: {fileID: 0}
     - target: {fileID: 7235061313959614830, guid: a93e3781526f0e64cbdf1b2869848a58, type: 3}
       propertyPath: playerActionsMenu

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class BattleManager : MonoBehaviour
     public int randInt2;
     public int[] randStorage;
     public bool isBattle;
+    public string nextSceneName;
+    public string loseSceneName;
 
     //REFERENCES//
     private GameObject player;
@@ -106,6 +109,14 @@ public class BattleManager : MonoBehaviour
             if (playerUnitStats.health <= 0)
             {
                 Debug.Log("LOSER");
+                if (!string.IsNullOrEmpty(loseSceneName))
+                {
+                    SceneManager.LoadScene(loseSceneName);
+                }
+                else
+                {
+                    Debug.LogError("Next scene name is not set.");
+                }
             }
             else
             {
@@ -124,8 +135,15 @@ public class BattleManager : MonoBehaviour
                 {
                     Debug.Log("GOD_DOWN");
                     playerActionsMenu.SetActive(false);
-                    isBattle = false;  
-                    music.Victory();
+                    isBattle = false;
+                    if (!string.IsNullOrEmpty(nextSceneName))
+                    {
+                        SceneManager.LoadScene(nextSceneName);
+                    }
+                    else
+                    {
+                        Debug.LogError("Next scene name is not set.");
+                    }
                 }
                 else
                 {

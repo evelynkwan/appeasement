@@ -33,7 +33,7 @@ public class MusicPlayer : MonoBehaviour
         {
 
         }
-        else
+        else if(settings.isMusic)
         {
             source.clip = win;
             source.time = 0;
@@ -49,7 +49,7 @@ public class MusicPlayer : MonoBehaviour
             {
 
             }
-            else
+            else if (settings.isMusic)
             {
                 source.clip = boss;
                 source.time = 0;
@@ -65,7 +65,7 @@ public class MusicPlayer : MonoBehaviour
                 {
 
                 }
-                else
+                else if (settings.isMusic)
                 {
                     source.clip = upgrade;
                     source.time = 0;
@@ -79,7 +79,7 @@ public class MusicPlayer : MonoBehaviour
                 {
 
                 }
-                else
+                else if (settings.isMusic)
                 {
                     source.clip = battle;
                     source.time = 0;
