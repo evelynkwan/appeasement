@@ -13,6 +13,7 @@ public class BattleManager : MonoBehaviour
     public bool upgrades;
     public int curLevel;
     public int loopDep;
+    private int randInt;
     public int randInt2;
     public int[] randStorage;
     public bool isBattle;
@@ -29,7 +30,7 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> enemies = new List<GameObject>();
 
     //Current enemy you're fighting 
-    public int curEnemy;
+    public int curEnemy = 0;
 
     //The Player Actions Menu for the UI Buttons 
     public GameObject playerActionsMenu;
@@ -37,7 +38,6 @@ public class BattleManager : MonoBehaviour
     public GameObject Angy;
     public GameObject Something;
     public GameObject God;
-    private int randInt = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,12 +49,14 @@ public class BattleManager : MonoBehaviour
         loopDep = 0;
         curLevel = 1;
         bui = GameObject.Find("Canvas").GetComponent<BattleUI>();
+        bui.enabled = false;
         playerActionsMenu.SetActive(true);
         player = GameObject.Find("KittyPlayer");
         playerUnitStats = player.GetComponent<UnitStats>();
         music = GameObject.Find("MusicPlayer").GetComponent<MusicPlayer>();
+
         randInt = Random.Range(1, 4);
-        if (randInt == 1)
+        if (randInt <= 1)
         {
             enemies.Add(Dog);
         }
@@ -62,7 +64,7 @@ public class BattleManager : MonoBehaviour
         {
             enemies.Add(Angy);
         }
-        else
+        else if (randInt > 2)
         {
             enemies.Add(Something);
         }
@@ -80,7 +82,10 @@ public class BattleManager : MonoBehaviour
         curTurn = 0;
 
         //Reset the turns so the player goes first.
-        ResetTurns();
+        Invoke("ResetTurns", 0.001f);
+
+  
+      //  ResetTurns();
     }
 
     // Update is called once per frame
@@ -168,6 +173,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("RESET TURNS");
         curTurn = 0;
         playerActionsMenu.SetActive(true);
+        bui.enabled = true;
         if (bui.meterValue < playerUnitStats.meterCost)
         {
             bui.specialButton.SetActive(false);
@@ -244,7 +250,7 @@ public class BattleManager : MonoBehaviour
                 {
                     enemies[curEnemy].GetComponent<UnitStats>().defense += 1;
                 }
-                else
+                else if (randInt2 > 2)
                 {
                     enemies[curEnemy].GetComponent<UnitStats>().max_health += 3;
                 }

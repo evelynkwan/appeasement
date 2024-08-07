@@ -75,12 +75,12 @@ public class BattleUI : MonoBehaviour
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         player = GameObject.Find("KittyPlayer");
         playerUnitStats = player.GetComponent<UnitStats>();
-        enemy = bm.enemies[bm.curEnemy];
+        //enemy = bm.enemies[0];
         playerActionScript = player.GetComponent<PlayerAction>();
         playerHP.maxValue = player.GetComponent<UnitStats>().max_health;
         playerHP.value = player.GetComponent<UnitStats>().health;
-        enemyHP.maxValue = enemy.GetComponent<UnitStats>().max_health;
-        enemyHP.value = enemy.GetComponent<UnitStats>().health;
+        //enemyHP.maxValue = enemy.GetComponent<UnitStats>().max_health;
+        //enemyHP.value = enemy.GetComponent<UnitStats>().health;
         playerHPNumber.text = player.GetComponent<UnitStats>().max_health.ToString();
         gun.SetActive(false);
         hammer.SetActive(false);
@@ -88,7 +88,7 @@ public class BattleUI : MonoBehaviour
         popper.SetActive(false);
         cannon.SetActive(false);
         bubble.SetActive(false);
-        if (bm.enemies[bm.curEnemy] == Dog)
+        /*if (bm.enemies[bm.curEnemy] == Dog)
         {
             DogUI.SetActive(true);
             SomethingUI.SetActive(false);
@@ -105,13 +105,21 @@ public class BattleUI : MonoBehaviour
             DogUI.SetActive(false);
             SomethingUI.SetActive(false);
             AngyUI.SetActive(true);
-        }
+        }*/
         //hpSlider.maxValue = playerUnitStats.maxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        //Check if enemy array is not null 
+        if (bm.enemies[0] != null)
+        {
+            enemy = bm.enemies[0];
+            enemyHP.maxValue = enemy.GetComponent<UnitStats>().max_health;
+        }
+
         apMeter.value = meterValue;
         floorNumber.text = "FLOOR " + bm.curLevel;
         if (meterValue < playerUnitStats.meterCost)
@@ -239,6 +247,7 @@ public class BattleUI : MonoBehaviour
         }
         else
         {
+            Debug.Log("PLEASE DON'T RUN AHHH");
             enemyHP.value = 0;
             Dog.SetActive(false);
             Something.SetActive(false);
