@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -14,15 +15,18 @@ public class SettingsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        live = GameObject.Find("SettingsLive").GetComponent<SettingsLive>();
+       // live = GameObject.Find("SettingsLive").GetComponent<SettingsLive>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        live = GameObject.Find("SettingsLive").GetComponent<SettingsLive>();
-        isMusic = live.isMusic;
-        isAudio = live.isAudio;
+    { 
+        if (SceneManager.GetSceneByName("Settings") == SceneManager.GetActiveScene())
+        {
+            live = GameObject.Find("SettingsLive").GetComponent<SettingsLive>();
+            isMusic = live.isMusic;
+            isAudio = live.isAudio;
+        }
     }
 
     private void Awake()

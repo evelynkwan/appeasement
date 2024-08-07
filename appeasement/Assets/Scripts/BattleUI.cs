@@ -160,14 +160,21 @@ public class BattleUI : MonoBehaviour
             angryFace.SetActive(true);
         }
         //ENSURE that the HP slider always updates with the player's current health
-        playerHP.value = player.GetComponent<UnitStats>().health;
-        if (player.GetComponent<UnitStats>().health < 0 || playerUnitStats.dead)
+        if (player != null)
         {
-            playerHPNumber.text = "0";
+            playerHP.value = player.GetComponent<UnitStats>().health;
+            if (player.GetComponent<UnitStats>().health < 0 || playerUnitStats.dead)
+            {
+                playerHPNumber.text = "0";
+            }
+            else
+            {
+                playerHPNumber.text = player.GetComponent<UnitStats>().health.ToString();
+            }
         }
         else
         {
-            playerHPNumber.text = player.GetComponent<UnitStats>().health.ToString();
+            playerHPNumber.text = "0";
         }
         if(enemy.GetComponent<UnitStats>().health < 0)
         {
